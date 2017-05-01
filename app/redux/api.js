@@ -2,6 +2,7 @@ import axios from 'axios'
 import { schema, normalize } from 'normalizr'
 
 import postActions from './entities/posts/actions.js'
+import { buildOptions } from "../utils/helpers";
 
 const EXAMPLE_ULR = 'http://127.0.0.1:5000'
 
@@ -11,8 +12,9 @@ postsSchema.define({
   image: [imageSchema]
 })
 
-export const fetchAllPosts = () => {
-  return axios.get(`${EXAMPLE_ULR}/posts`)
+export const fetchPosts = (queryParams = "") => {
+  console.log('test');
+  return axios.get(`${EXAMPLE_ULR}/posts${queryParams}`)
     .then(res => {
       const { entities: { posts } } = normalize(res.data, [postsSchema])
       return postActions.fetchPosts(posts)

@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { Link } from 'react-router'
+
 import { truncate, convert_to_sqrMeter } from '../utils/helpers.js'
 
 const Post = (props) => {
@@ -7,7 +9,7 @@ const Post = (props) => {
   const address = truncate(`${post.street}, ${post.city}`, 30)
   return (
     <div className="col-sm-4">
-    	<a href="">
+    	<Link to={`apartment/${post.id}`}>
 			<div className="post">
 				<div className="image">
 					<img src={post.image && post.image[0]} className="img-responsive"/>
@@ -29,7 +31,7 @@ const Post = (props) => {
 					</div>
 				</div>
 			</div>
-		</a>
+		</Link>
 	</div>
   )
 }

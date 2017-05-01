@@ -6,7 +6,7 @@ import store from "./redux/store.js";
 
 import './Scss/Styles.scss';
 
-import App from './components/App.jsx';
+import App from './src/App.jsx';
 
 render(
   <Provider store = {store}>

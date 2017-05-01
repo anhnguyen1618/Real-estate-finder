@@ -1,5 +1,5 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux'
-import { reducer as formReducer } from 'redux-form'
+import { reducer as form } from 'redux-form'
 import thunk from 'redux-thunk';
 
 import entities from './entities/entities.js'
@@ -7,7 +7,8 @@ import entities from './entities/entities.js'
 import { promiseDispatchWrapper } from './redux-middleware.js'
 
 const rootReducer = combineReducers({
-  entities
+  entities,
+  form
 })
 
 const store = createStore(rootReducer, applyMiddleware(thunk));

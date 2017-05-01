@@ -1,0 +1,66 @@
+.details {
+    .cover {
+        width: 100%;
+        height: 60%;
+        background-image: url('http://wpopaldemo.com/parahouse/wp-content/themes/parahouse/images/breadcrumb-1.jpg');
+        background-size: 100% 90%;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
+    .detail-content {
+        margin-top: -150px;
+        background-color: white;
+        min-height: 500px;
+        padding: 30px;
+        .col-sm-8 {
+            padding-right: 2px;
+        }
+        .col-sm-4 {
+            padding-left: 2px;
+        }
+    }
+    .main-img {
+        height: 450px;
+        width: 100%;
+    }
+    .sm-img {
+        overflow-x: scroll;
+        display: flex;
+        flex-direction: row;
+        img {
+            height: 130px;
+            width: 200px !important;
+            padding-right: 3px;
+            padding-top: 2px;
+            display: inline-block;
+        }
+    }
+    .basic-info {
+        background-color: #00897b;
+        color: white;
+        padding: 10px;
+        padding-bottom: 30px;
+    }
+    .map {
+        margin-top: 4px;
+    }
+    .properties {
+        text-align: center;
+        h4 {
+            margin-bottom: 30px;
+        }
+        .property {
+            border: 1px solid #ebebeb;
+            padding: 10px 15px;
+            margin: 20px 5px 10px;
+            line-height: 30px;
+            text-align: left;
+            .property-title {
+                font-weight: 600;
+            }
+            .property-value {
+                float: right;
+            }
+        }
+    }
+}

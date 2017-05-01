@@ -3,6 +3,6 @@ export const promiseDispatchWrapper = ({ dispatch }) => {
     if (typeof action.then === 'function') {
       return action.then(dispatch)
     }
-    return dispatch;
+    return dispatch(action);
   }
 }
