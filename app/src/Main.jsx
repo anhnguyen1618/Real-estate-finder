@@ -1,19 +1,24 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router'
+import classnames from 'classnames'
 
 import { fetchPosts } from "../redux/api.js";
 import { getAllPosts } from "../redux/entities/posts/selectors.js";
 
 import Post from "./Post.jsx";
+import MenuButton from "./MenuButton.jsx"
+import Login from "./Login.jsx"
 
 class Main extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      loginModalShowed: false
+    }
   }
 
   componentDidMount() {
-    console.log("hihi");
     this.props.fetchPosts(this.props.location.search)
   }
 
@@ -22,12 +27,21 @@ class Main extends React.Component {
       this.props.fetchPosts(nextProps.location.search)
     }
   }
+  toggleLoginModal = () => {
+    this.setState({...this.state, loginModalShowed: !this.state.loginModalShowed });
+  }
 
   render() {
+    const { loginModalShowed } = this.state
+    const contentClassName = classnames('content', { 'content-opened': loginModalShowed })
     return (
       <div>
-	    	{this.props.children}
-	    </div>
+          <MenuButton handleClick={this.toggleLoginModal}/>
+          <div className={contentClassName}>
+            {this.props.children}
+          </div>
+          <Login opened={loginModalShowed}/>
+      </div>
     )
   }
 }

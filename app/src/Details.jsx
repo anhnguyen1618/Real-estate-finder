@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router'
+import { withRouter, Link } from 'react-router'
 
 import { getOnePost } from "../redux/entities/posts/selectors.js";
 import { MAP_TITLES } from "../utils/property-const";
@@ -51,7 +51,11 @@ export class Details extends React.Component {
     const properties = this.mapProperties(apartment)
     return (
       <div className="details">
-       <div className="cover"></div>
+       <div className="cover">
+       		<div className="container">
+       			<Link to={'/'} className="back-button">Back</Link>
+       		</div>      		
+       </div>
        <div className="container">
        		<div className="detail-content">
        			<div className="row">

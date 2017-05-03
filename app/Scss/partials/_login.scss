@@ -1,0 +1,89 @@
+@mixin center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-login {
+    position: fixed;
+    height: 100vh;
+    width: 100%;
+    left: 0px;
+    top: 0px;
+    z-index: -1;
+    opacity: 0;
+    transition-duration: 0.7s;
+    .full-screen {
+        height: 100%;
+        width: 100%;
+        background-color: $black-tint-image-color;
+        @include center;
+        .login-modal {
+            background-color: white;
+            min-width: 600px;
+            padding: 60px 100px;
+            @include center;
+        }
+    }
+}
+
+.login-modal {
+    .form {
+        width: 100%;
+    }
+    input {
+        height: 40px;
+        border-radius: 0px;
+    }
+    .form-group {
+        position: relative;
+        margin-bottom: 25px;
+    }
+    .email:after {
+        content: 'Email';
+    }
+    .password:after {
+        content: 'Password';
+    }
+    .form-group:after {
+        opacity: 0.3;
+        font-size: 18px;
+        position: absolute;
+        top: (40px-25.6px)/2;
+        left: 12px;
+        transition-duration: .4s;
+    }
+    .form-group:focus {
+        background-color: red;
+    }
+    .email.focused:after {
+        transform: translate(320px, 0);
+    }
+    .password.focused:after {
+        transform: translate(286px, 0);
+    }
+    .loginButton {
+        padding: 10px 50px;
+        background-color: #00897b;
+        color: white;
+        border: medium none;
+        border-radius: 2px;
+    }
+    img {
+        width: 100px;
+        margin-bottom: 30px;
+    }
+}
+
+.modal-opened {
+    z-index: 1;
+    opacity: 1;
+}
+
+.content {
+    transition-duration: .1s;
+}
+
+.content-opened {
+    filter: blur(10px);
+}
