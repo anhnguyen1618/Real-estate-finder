@@ -17,7 +17,7 @@ const ControledInput = (props) => {
 }
 
 const Login = (props) => {
-  const { opened, handleSubmit, activeTab, changeActiveTab } = props
+  const { opened, handleSubmit, activeTab, changeActiveTab, submitting } = props
   const modalClasses = classnames('modal-login', { 'modal-opened': opened })
   return (
     <div className={modalClasses}>
@@ -33,7 +33,7 @@ const Login = (props) => {
 		    	<center><img src="http://www.computer-repairs-auckland.co.nz/images/home_with_wifi.png" alt=""/></center>
 		    	<Field name="email" component={ControledInput}/>
 		      	<Field name="password" component={ControledInput}/>
-		      	<button className="pull-right loginButton" type="submit">Sign in</button>
+		      	<button className="pull-right loginButton" type="submit" disabled={submitting}>{activeTab}</button>
 		    </form>		    
 		  </div>
 		</div>  	
