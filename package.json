@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "start": "node index.js",
-    "dev-start": "webpack-dev-server --hot --inline",
+    "start": "webpack-dev-server --hot --inline",
     "build": "webpack -p --define process.env.NODE_ENV='\"production\"' --progress --optimize-minimize"
   },
   "author": "",
