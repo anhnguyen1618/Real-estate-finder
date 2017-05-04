@@ -17,18 +17,23 @@ const ControledInput = (props) => {
 }
 
 const Login = (props) => {
-  const { opened } = props
-  console.log(opened);
+  const { opened, handleSubmit, activeTab, changeActiveTab, submitting } = props
   const modalClasses = classnames('modal-login', { 'modal-opened': opened })
   return (
     <div className={modalClasses}>
     	<div className="full-screen">
 		  <div className="login-modal">
-		    <form className="form">
+		  	<div className="login-tab">
+		  		{['Login', 'Sign Up'].map(tab => {
+		  			const tabClassNames = classnames('tab-header', { 'tab-active': tab === activeTab})
+		  			return (<div className={tabClassNames} onClick={() => changeActiveTab(tab)}>{tab}</div>)
+		  		})}
+		  	</div>
+		    <form className="form" onSubmit={handleSubmit}>
 		    	<center><img src="http://www.computer-repairs-auckland.co.nz/images/home_with_wifi.png" alt=""/></center>
 		    	<Field name="email" component={ControledInput}/>
 		      	<Field name="password" component={ControledInput}/>
-		      	<button className="pull-right loginButton">Sign in</button>
+		      	<button className="pull-right loginButton" type="submit" disabled={submitting}>{activeTab}</button>
 		    </form>		    
 		  </div>
 		</div>  	
