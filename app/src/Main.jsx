@@ -9,6 +9,7 @@ import { getAllPosts } from "../redux/entities/posts/selectors.js";
 import Post from "./Post.jsx";
 import MenuButton from "./MenuButton.jsx"
 import Login from "./Login.jsx"
+import LoginContainer from "./containers/Login-form-container.jsx";
 
 class Main extends React.Component {
   constructor(props) {
@@ -40,7 +41,9 @@ class Main extends React.Component {
           <div className={contentClassName}>
             {this.props.children}
           </div>
-          <Login opened={loginModalShowed}/>
+          <LoginContainer>
+            <Login opened={loginModalShowed}/>
+          </LoginContainer>
       </div>
     )
   }
