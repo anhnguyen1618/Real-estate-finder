@@ -4,17 +4,16 @@ import { schema, normalize } from 'normalizr'
 import postActions from './entities/posts/actions.js'
 import { buildOptions } from "../utils/helpers";
 
-const EXAMPLE_ULR = 'http://127.0.0.1:5000'
+const EXAMPLE_ULR = 'https://ehomemetro.herokuapp.com'
 
 const postsSchema = new schema.Entity('posts')
 const imageSchema = new schema.Entity('images', {}, { idAttribute: 'url' })
 postsSchema.define({
-  image: [imageSchema]
+  imageUrls: [imageSchema]
 })
 
 export const fetchPosts = (queryParams = "") => {
-  console.log('test');
-  return axios.get(`${EXAMPLE_ULR}/posts${queryParams}`)
+  return axios.get(`${EXAMPLE_ULR}/api/search${queryParams}`)
     .then(res => {
       const { entities: { posts } } = normalize(res.data, [postsSchema])
       return postActions.fetchPosts(posts)

@@ -12,7 +12,7 @@ const Post = (props) => {
     	<Link to={`apartment/${post.id}`}>
 			<div className="post">
 				<div className="image">
-					<img src={post.image && post.image[0]} className="img-responsive"/>
+					<img src={post.imageUrls && post.imageUrls[0]} className="img-responsive"/>
 					<div className="price">
 						<text>{`${post.price} $`}</text>
 					</div>
