@@ -27,7 +27,7 @@ const Post = (props) => {
 						<h4><i className="fa fa-bed"></i> {post.bedrooms}</h4>
 						<h4><i className="fa fa-bath"></i> {parseInt(post.bathrooms)}</h4>
 						<h4><i className="fa fa-car"></i> {post.parkingType ? "Yes": "No"}</h4>
-						<h4><i className="fa fa-arrows-alt"></i> {convert_to_sqrMeter(post.finishedSqFt)}</h4>
+						<h4><i className="fa fa-arrows-alt"></i> {post.lotSizeSqFt}</h4>
 					</div>
 				</div>
 			</div>

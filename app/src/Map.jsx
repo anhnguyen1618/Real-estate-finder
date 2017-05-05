@@ -13,7 +13,7 @@ const MapComponent = withGoogleMap(props => (
   </GoogleMap>
 ));
 
-const Container = (<div style={{ height: `397px` }} />)
+const Container = (<div style={{ height: `370px` }} />)
 const MapElement = (<div style={{ height: `100%` }} />)
 
 export class Map extends React.Component {

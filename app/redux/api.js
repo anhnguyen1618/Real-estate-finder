@@ -40,3 +40,15 @@ export const deletePost = () => {
       return deletePost(res)
     })
 }
+
+export const login = (user) => {
+  const { username, password } = user
+  const instance = axios.create()
+  instance.defaults.headers.common['Authorization'] = 'Basic ' + btoa(username + ':' + password)
+  instance.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
+  instance.defaults.headers.common['withCredentials'] = true;
+  return instance.post(`${EXAMPLE_ULR}/api/login`, user)
+    .then(res => {
+      console.log(res);
+    })
+}
