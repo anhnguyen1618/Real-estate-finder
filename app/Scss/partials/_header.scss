@@ -47,6 +47,8 @@ $black-tint-color:rgba(0, 0, 0, 0.7);
         .btn-danger {
             @include center;
         }
-        .upperForm {}
+        img {
+            width: 60px;
+        }
     }
 }

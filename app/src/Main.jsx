@@ -3,8 +3,11 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router'
 import classnames from 'classnames'
 
-import { fetchPosts, login } from "../redux/api.js";
+import userActions from '../redux/entities/users/actions.js'
+
+import { fetchPosts, login, getCurrentUser } from "../redux/api.js";
 import { getAllPosts } from "../redux/entities/posts/selectors.js";
+import { getUser } from "../redux/entities/users/selector.js";
 
 import Post from "./Post.jsx";
 import MenuButton from "./MenuButton.jsx"
@@ -20,14 +23,15 @@ class Main extends React.Component {
   }
 
   componentDidMount() {
+    //this.props.getCurrnentUser()
     this.props.fetchPosts(this.props.location.search)
-    login({ username: 'ngoc', password: '1234' })
   }
 
   componentWillReceiveProps(nextProps) {
     if (this.props.location.search !== nextProps.location.search) {
       this.props.fetchPosts(nextProps.location.search)
     }
+    //this.props.getCurrnentUser()
   }
   toggleLoginModal = () => {
     this.setState({...this.state, loginModalShowed: !this.state.loginModalShowed });
@@ -35,14 +39,21 @@ class Main extends React.Component {
 
   render() {
     const { loginModalShowed } = this.state
+    const { hasUser, logOut } = this.props
     const contentClassName = classnames('content', { 'content-opened': loginModalShowed })
     return (
       <div>
-          <MenuButton handleClick={this.toggleLoginModal}/>
+          {hasUser 
+            ? (<div className="log-out menu">
+                <img src="http://i.imgur.com/GMeQoT2.png" alt="" onClick={logOut}/>
+              </div>)
+            : <MenuButton handleClick={this.toggleLoginModal} opened={loginModalShowed}/>
+          }
+
           <div className={contentClassName}>
             {this.props.children}
           </div>
-          <LoginContainer>
+          <LoginContainer onClose={this.toggleLoginModal}>
             <Login opened={loginModalShowed}/>
           </LoginContainer>
       </div>
@@ -51,13 +62,22 @@ class Main extends React.Component {
 }
 
 Main.displayName = "Main"
-const mapDispatchToProps = (dispatch) => {
+const mapStateToProps = (state) => {
   return {
-    fetchPosts: (queryParams) => dispatch(fetchPosts(queryParams))
+    hasUser: !!getUser(state)
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  console.log(userActions);
+  return {
+    fetchPosts: (queryParams) => dispatch(fetchPosts(queryParams)),
+    //getCurrnentUser: () => dispatch(getCurrentUser()),
+    logOut: () => dispatch(userActions.logOut())
   }
 }
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps,
 )(withRouter(Main))

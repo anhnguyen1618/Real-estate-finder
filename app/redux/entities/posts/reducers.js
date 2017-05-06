@@ -24,9 +24,7 @@ const deletePost = (state, { payload }) => {
   return state.delete(payload)
 }
 
-const defaultState = fromJS({
-  posts: Map()
-})
+const defaultState = Map()
 
 export default handleActions({
   FETCH_POSTS: addAllPosts,

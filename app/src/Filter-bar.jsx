@@ -5,18 +5,20 @@ import { Link } from 'react-router'
 import InputRange from 'react-input-range';
 
 const SilderForm = ({ input: { onChange, value }, minBound, maxBound }) => {
-  console.log("value", value);
-  return (<InputRange maxValue={maxBound} minValue={minBound} value={value} onChange={onChange}/>)
+  return (<InputRange 
+  			maxValue={maxBound} 
+  			minValue={minBound} 
+  			value={value} 
+  			onChange={onChange}/>)
 }
 
 const FilterForm = (props) => {
   const { handleSubmit, reset, submitting, queryParams } = props
-  console.log(queryParams);
   return (
     <div className="filter-bar">
 		<form className="container" onSubmit={handleSubmit}>
 			<div className="upperForm">
-				<h2>Filter</h2>
+				<center><img src="http://i.imgur.com/x85LtZs.png" alt=""/></center>
 				<div className="col-md-3">
 					<label htmlFor="">Location</label>
 					<Field name="city" className="form-control" component="input" type="text" placeholder="location"/>
