@@ -5,7 +5,7 @@ import thunk from 'redux-thunk';
 import entities from './entities'
 import fetching from './Fetching'
 
-import { promiseDispatchMiddleWare } from './redux-middleware.js'
+import { promiseDispatchMiddleWare, promiseFlattenerMiddleWare } from './redux-middleware.js'
 
 const rootReducer = combineReducers({
   entities,
@@ -13,6 +13,6 @@ const rootReducer = combineReducers({
   fetching
 })
 
-const store = createStore(rootReducer, applyMiddleware(thunk, promiseDispatchMiddleWare));
+const store = createStore(rootReducer, applyMiddleware(thunk, promiseDispatchMiddleWare, promiseFlattenerMiddleWare));
 
 export default store

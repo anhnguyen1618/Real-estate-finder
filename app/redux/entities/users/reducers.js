@@ -15,9 +15,7 @@ const logOut = (state) => {
   return state.clear()
 }
 
-const defaultState = fromJS({
-  user: Map()
-})
+const defaultState = Map()
 
 export default handleActions({
   LOG_IN: logIn,

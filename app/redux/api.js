@@ -2,8 +2,8 @@ import axios from 'axios'
 import { schema, normalize } from 'normalizr'
 
 import postActions from './entities/posts/actions.js'
+import userActions from './entities/users/actions.js'
 import * as fetchActions from './Fetching/fetching-actions.js'
-import { buildOptions } from "../utils/helpers";
 
 const EXAMPLE_ULR = 'https://ehomemetro.herokuapp.com'
 
@@ -53,7 +53,21 @@ export const login = (user) => {
   instance.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
   instance.defaults.headers.common['withCredentials'] = true;
   return instance.post(`${EXAMPLE_ULR}/api/login`, user)
+    .then(res => userActions.logIn(res.data))
+}
+
+export const signUp = (user) => {
+  user.id = 1000000
+  return axios.post(`${EXAMPLE_ULR}/registerUser`, user)
     .then(res => {
-      console.log(res);
+      return { res, type: "" }
+    })
+}
+
+export const getCurrentUser = (user) => {
+  return axios.get(`${EXAMPLE_ULR}/api/currentUser`)
+    .then((res) => {
+      console.log(res)
+      return userActions.logIn(res.data)
     })
 }

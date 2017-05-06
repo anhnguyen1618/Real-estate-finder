@@ -1,10 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { SubmissionError } from 'redux-form'
 
-import FilterForm from '../Filter-bar.jsx';
-
-import { fetchPosts } from "../../redux/api.js";
-import { buildQueryParams } from "../../utils/helpers.js";
+import { login, signUp } from '../../redux/api.js'
 
 export class LoginFormContainer extends React.Component {
   constructor(props) {
@@ -16,9 +14,23 @@ export class LoginFormContainer extends React.Component {
 
   onSave = (user) => {
     if (this.state.activeTab === "Login") {
-      return "login"
+      return this.props.logIn(user)
+        .then(() => {
+          this.props.onClose()
+        })
+        .catch(err => {
+          throw new SubmissionError({ _error: 'Login failed!' })
+        })
     }
-    return "signup"
+    return this.props.signUp(user)
+      .then(() => {
+        this.changeActiveTab('Login')
+        alert("Account created successfully!")
+      })
+      .catch(err => {
+        console.log(err);
+        throw new SubmissionError({ _error: 'This user is already exist!' })
+      })
   }
 
   changeActiveTab = (activeTab) => {
@@ -29,16 +41,17 @@ export class LoginFormContainer extends React.Component {
     const { activeTab } = this.state
     return (
       <div>
-		    {
-		      React.cloneElement(this.props.children, { activeTab, onSubmit: this.onSave, changeActiveTab: this.changeActiveTab })
-		    }
-    	</div>)
+        {
+          React.cloneElement(this.props.children, { activeTab, onSubmit: this.onSave, changeActiveTab: this.changeActiveTab })
+        }
+      </div>)
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    search: options => dispatch(fetchPosts(options))
+    logIn: user => dispatch(login(user)),
+    signUp: user => dispatch(signUp(user))
   }
 }
 

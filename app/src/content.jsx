@@ -32,6 +32,7 @@ class Content extends React.Component {
 }
 
 const mapStateToProps = (state) => {
+  console.log(state.entities.user.toJS());
   return {
     posts: getAllPosts(state),
     housesIsLoading: getFetchingByName(state, 'houses')

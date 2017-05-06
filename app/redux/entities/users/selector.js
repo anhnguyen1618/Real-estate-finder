@@ -1,3 +1,3 @@
-export const getCurrentUser = (state) => {
-  return state.entities.user
+export const getUser = (state) => {
+  return state.entities.user.size ? state.entities.user.toJS() : null
 }

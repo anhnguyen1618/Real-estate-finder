@@ -35,8 +35,8 @@
         position: relative;
         margin-bottom: 25px;
     }
-    .email:after {
-        content: 'Email';
+    .username:after {
+        content: 'Username';
     }
     .password:after {
         content: 'Password';
@@ -52,8 +52,8 @@
     .form-group:focus {
         background-color: red;
     }
-    .email.focused:after {
-        transform: translate(320px, 0);
+    .username.focused:after {
+        transform: translate(283px, 0);
     }
     .password.focused:after {
         transform: translate(286px, 0);
@@ -90,6 +90,10 @@
         border-bottom: 4px solid #0cadd6;
         opacity: 1;
     }
+    .error-message {
+        color: red;
+        margin-bottom: 10px;
+    }
 }
 
 .modal-opened {
@@ -97,10 +101,27 @@
     opacity: 1;
 }
 
+.log-out {
+    padding: 20px;
+    border-radius: 50%;
+    background-color: #0288d1;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+    img {
+        width: 60px;
+    }
+}
+
 .content {
-    transition-duration: .1s;
+    transition: filter .1s;
 }
 
 .content-opened {
     filter: blur(10px);
+    animation: scroll 17s linear infinite alternate;
+}
+
+@keyframes scroll {
+    100% {
+        transform: translateY(-300px);
+    }
 }
