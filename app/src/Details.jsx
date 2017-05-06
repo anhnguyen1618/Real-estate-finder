@@ -9,24 +9,11 @@ import Map from "./Map.jsx";
 
 export class Details extends React.Component {
   constructor(props) {
-      super(props);
-      this.state = {
-        mainImage: ''
-      }
+    super(props);
+    this.state = {
+      mainImage: ''
     }
-    /*
-	<h4>PROPERTY INFORMATION</h4>
-       			    	<div className="col-sm-6">
-       			    		<div className="property">
-       			    			fdsfsd
-       			    		</div>
-       			    	</div>
-       			    	<div className="col-sm-6">
-       			    		<div className="property">
-       			    			fdsfsd
-       			    		</div>
-       			    	</div>
-  */
+  }
 
   changeMainImage = (mainImage) => this.setState({ mainImage })
 
@@ -47,52 +34,53 @@ export class Details extends React.Component {
       return <h1>fdsf</h1>
     }
 
-    const mainImage = this.state.mainImage || apartment.image[0]
+    const mainImage = this.state.mainImage || apartment.imageUrls[0]
     const properties = this.mapProperties(apartment)
     return (
       <div className="details">
        <div className="cover">
-       		<div className="container">
-       			<Link to={'/'} className="back-button">Back</Link>
-       		</div>      		
+          <div className="container">
+            <Link to={'/'} className="back-button">Back</Link>
+          </div>          
        </div>
        <div className="container">
-       		<div className="detail-content">
-       			<div className="row">
-	       			<div className="col-sm-8">
-	       				<img src={mainImage} className="main-img"/>
-		       			<div className="sm-img">
-			       			{apartment.image.map((img) => {
-			       				return (<img src={img} onMouseOver={()=>this.changeMainImage(img)} />)
-			       			})}
-		       			</div>
-	       			</div>
-	       			<div className="col-sm-4">
-	       				<div className="basic-info">
-		       				<h2>Apartment for sale</h2>
-		       			    <h3>{`${apartment.street}, ${apartment.city}`}</h3>		
-		       			    <h1><span className="label label-danger">$ {apartment.price}</span></h1>	
-	       			    </div>
-	       			    <div className="map">
-	       			    	<Map latitude={parseFloat(apartment.latitude)} longitude={parseFloat(apartment.longitude)}/>
-	       			    </div>	
-	       			</div>
-       			</div>    			
-       			<hr/>
-       			<div className="properties row">
-       				<h4>PROPERTY INFORMATION</h4>
-       				{properties.map(({title, value}) => {
-       					return (
-       						<div className="col-sm-4">
-		   			    		<div className="property">
-		   			    			<span className="property-title">{title}: </span>
-		   			    			<span className="property-value">{value}</span>
-		   			    		</div>
-		   			    	</div>
-       					)
-       				})}
-       			</div>
-       		</div>
+          <div className="detail-content">
+            <div className="row">
+              <div className="col-sm-8">
+                <img src={mainImage} className="main-img"/>
+
+                <div className="sm-img">
+                  {apartment.imageUrls.map((img) => {
+                    return (<img src={img} onMouseOver={()=>this.changeMainImage(img)} />)
+                  })}
+                </div>
+              </div>
+              <div className="col-sm-4">
+                <div className="basic-info">
+                  <h2>Apartment for sale</h2>
+                    <h3>{`${apartment.street}, ${apartment.city}`}</h3>   
+                    <h1><span className="label label-danger">$ {apartment.price}</span></h1>  
+                  </div>
+                  <div className="map">
+                    <Map latitude={parseFloat(apartment.latitude)} longitude={parseFloat(apartment.longitude)}/>
+                  </div>  
+              </div>
+            </div>          
+            <hr/>
+            <div className="properties row">
+              <h4>PROPERTY INFORMATION</h4>
+              {properties.map(({title, value}) => {
+                return (
+                  <div className="col-sm-4">
+                    <div className="property">
+                      <span className="property-title">{title}: </span>
+                      <span className="property-value">{value}</span>
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+          </div>
        </div>
        
     </div>

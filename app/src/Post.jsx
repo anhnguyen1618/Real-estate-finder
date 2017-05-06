@@ -12,7 +12,7 @@ const Post = (props) => {
     	<Link to={`apartment/${post.id}`}>
 			<div className="post">
 				<div className="image">
-					<img src={post.image && post.image[0]} className="img-responsive"/>
+					<img src={post.imageUrls && post.imageUrls[0]} className="img-responsive"/>
 					<div className="price">
 						<text>{`${post.price} $`}</text>
 					</div>
@@ -27,7 +27,7 @@ const Post = (props) => {
 						<h4><i className="fa fa-bed"></i> {post.bedrooms}</h4>
 						<h4><i className="fa fa-bath"></i> {parseInt(post.bathrooms)}</h4>
 						<h4><i className="fa fa-car"></i> {post.parkingType ? "Yes": "No"}</h4>
-						<h4><i className="fa fa-arrows-alt"></i> {convert_to_sqrMeter(post.finishedSqFt)}</h4>
+						<h4><i className="fa fa-arrows-alt"></i> {post.lotSizeSqFt}</h4>
 					</div>
 				</div>
 			</div>

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router'
 import classnames from 'classnames'
 
-import { fetchPosts } from "../redux/api.js";
+import { fetchPosts, login } from "../redux/api.js";
 import { getAllPosts } from "../redux/entities/posts/selectors.js";
 
 import Post from "./Post.jsx";
@@ -21,6 +21,7 @@ class Main extends React.Component {
 
   componentDidMount() {
     this.props.fetchPosts(this.props.location.search)
+    login({ username: 'ngoc', password: '1234' })
   }
 
   componentWillReceiveProps(nextProps) {

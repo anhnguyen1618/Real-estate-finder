@@ -15,7 +15,7 @@ const FilterFormContainer = (props) => {
     })
   }
   return (
-    <FilterForm onSubmit={submit} />
+    <FilterForm onSubmit={submit} queryParams={props.location.search}/>
   )
 }
 

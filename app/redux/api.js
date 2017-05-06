@@ -2,23 +2,27 @@ import axios from 'axios'
 import { schema, normalize } from 'normalizr'
 
 import postActions from './entities/posts/actions.js'
+import * as fetchActions from './Fetching/fetching-actions.js'
 import { buildOptions } from "../utils/helpers";
 
-const EXAMPLE_ULR = 'http://127.0.0.1:5000'
+const EXAMPLE_ULR = 'https://ehomemetro.herokuapp.com'
 
 const postsSchema = new schema.Entity('posts')
 const imageSchema = new schema.Entity('images', {}, { idAttribute: 'url' })
 postsSchema.define({
-  image: [imageSchema]
+  imageUrls: [imageSchema]
 })
 
 export const fetchPosts = (queryParams = "") => {
-  console.log('test');
-  return axios.get(`${EXAMPLE_ULR}/posts${queryParams}`)
-    .then(res => {
-      const { entities: { posts } } = normalize(res.data, [postsSchema])
-      return postActions.fetchPosts(posts)
-    })
+  return {
+    type: 'HANDLE_PROMISE',
+    types: [fetchActions.fetchingHouses, postActions.fetchPosts],
+    api: axios.get(`${EXAMPLE_ULR}/api/search${queryParams}`)
+      .then(res => {
+        const { entities: { posts } } = normalize(res.data, [postsSchema])
+        return posts
+      })
+  }
 }
 
 export const createPost = (data) => {
@@ -39,5 +43,17 @@ export const deletePost = () => {
   return axios.delete(EXAMPLE_ULR)
     .then(res => {
       return deletePost(res)
+    })
+}
+
+export const login = (user) => {
+  const { username, password } = user
+  const instance = axios.create()
+  instance.defaults.headers.common['Authorization'] = 'Basic ' + btoa(username + ':' + password)
+  instance.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
+  instance.defaults.headers.common['withCredentials'] = true;
+  return instance.post(`${EXAMPLE_ULR}/api/login`, user)
+    .then(res => {
+      console.log(res);
     })
 }
