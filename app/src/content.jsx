@@ -4,8 +4,10 @@ import { withRouter } from 'react-router'
 
 import { fetchPosts } from "../redux/api.js";
 import { getAllPosts } from "../redux/entities/posts/selectors.js";
+import { getFetchingByName } from "../redux/Fetching/selectors.js";
 
 import Post from "./Post.jsx";
+import LoadingSpinner from './components/Spiner.jsx'
 
 class Content extends React.Component {
   constructor(props) {
@@ -13,8 +15,10 @@ class Content extends React.Component {
   }
 
   render() {
-    const { posts } = this.props
-    console.log(posts);
+    const { posts, housesIsLoading } = this.props
+    if (housesIsLoading) {
+      return <LoadingSpinner/>
+    }
     return (
       <div className="row">
         {
@@ -29,7 +33,8 @@ class Content extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    posts: getAllPosts(state)
+    posts: getAllPosts(state),
+    housesIsLoading: getFetchingByName(state, 'houses')
   }
 }
 

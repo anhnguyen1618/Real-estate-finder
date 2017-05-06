@@ -2,6 +2,7 @@ import axios from 'axios'
 import { schema, normalize } from 'normalizr'
 
 import postActions from './entities/posts/actions.js'
+import * as fetchActions from './Fetching/fetching-actions.js'
 import { buildOptions } from "../utils/helpers";
 
 const EXAMPLE_ULR = 'https://ehomemetro.herokuapp.com'
@@ -13,11 +14,15 @@ postsSchema.define({
 })
 
 export const fetchPosts = (queryParams = "") => {
-  return axios.get(`${EXAMPLE_ULR}/api/search${queryParams}`)
-    .then(res => {
-      const { entities: { posts } } = normalize(res.data, [postsSchema])
-      return postActions.fetchPosts(posts)
-    })
+  return {
+    type: 'HANDLE_PROMISE',
+    types: [fetchActions.fetchingHouses, postActions.fetchPosts],
+    api: axios.get(`${EXAMPLE_ULR}/api/search${queryParams}`)
+      .then(res => {
+        const { entities: { posts } } = normalize(res.data, [postsSchema])
+        return posts
+      })
+  }
 }
 
 export const createPost = (data) => {

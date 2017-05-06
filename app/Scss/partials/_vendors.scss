@@ -103,3 +103,24 @@
     width: 100%;
     margin-top: 35px;
 }
+
+.spinner {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    border: solid 6px rgba(128, 128, 128, 0.4);
+    border-top-color: rgba(128, 128, 128, 0.1);
+    animation: spin .8s linear infinite;
+}
+
+.spinner-container {
+    width: 100%;
+    min-height: 200px;
+    @include center;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}

@@ -1,8 +1,13 @@
-export const promiseDispatchWrapper = ({ dispatch }) => {
-  return action => {
-    if (typeof action.then === 'function') {
-      return action.then(dispatch)
+export const promiseDispatchMiddleWare = ({ dispatch }) => {
+  return next => action => {
+    if (typeof action === 'object' && action.types && action.types.length === 2 && action.api) {
+      const { types: [requestAction, receiveAction], api } = action
+      dispatch(requestAction(true))
+      api.then(res => {
+        dispatch(requestAction(false))
+        dispatch(receiveAction(res))
+      })
     }
-    return dispatch(action);
+    return next(action)
   }
 }
