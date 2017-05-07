@@ -10,7 +10,7 @@ describe('SliderInput', () => {
   const props = {
     input: {
       onChange: jest.fn(),
-      value: 300
+      value: 40
     },
     minBound: 20,
     maxBound: 50

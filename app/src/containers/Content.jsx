@@ -9,7 +9,7 @@ import { getFetchingByName } from "../../redux/Fetching/selectors.js";
 import Post from "../components/Post.jsx";
 import LoadingSpinner from '../components/Spiner.jsx'
 
-const Content = ({ posts, housesIsLoading }) => {
+export const Content = ({ posts, housesIsLoading }) => {
   if (housesIsLoading) {
     return <LoadingSpinner/>
   }

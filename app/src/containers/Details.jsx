@@ -6,6 +6,7 @@ import { getOnePost } from "../../redux/entities/posts/selectors.js";
 import { MAP_TITLES } from "../../utils/property-const";
 
 import Map from "../components/Map.jsx";
+import LoadingSpinner from '../components/Spiner.jsx'
 
 export class Details extends React.Component {
   constructor(props) {
@@ -31,7 +32,7 @@ export class Details extends React.Component {
     const { apartment } = this.props
     console.log(apartment)
     if (!apartment) {
-      return <h1>fdsf</h1>
+      return (<LoadingSpinner/>)
     }
 
     const mainImage = this.state.mainImage || apartment.imageUrls[0]
