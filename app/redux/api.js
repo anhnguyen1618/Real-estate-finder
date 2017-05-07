@@ -68,7 +68,7 @@ export const signUp = (user) => {
 export const getCurrentUser = (user) => {
   return axios.get(`${EXAMPLE_ULR}/api/currentUser`)
     .then((res) => {
-      console.log(res)
-      return userActions.logIn(res.data)
+      if (res.data) return userActions.logIn(res.data)
+      return { type: "" }
     })
 }

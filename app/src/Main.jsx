@@ -9,12 +9,11 @@ import { fetchPosts, login, getCurrentUser } from "../redux/api.js";
 import { getAllPosts } from "../redux/entities/posts/selectors.js";
 import { getUser } from "../redux/entities/users/selector.js";
 
-import Post from "./Post.jsx";
-import MenuButton from "./MenuButton.jsx"
+import MenuButton from "./components/MenuButton.jsx"
 import Login from "./Login.jsx"
 import LoginContainer from "./containers/Login-form-container.jsx";
 
-class Main extends React.Component {
+export class Main extends React.Component {
   constructor(props) {
     super(props);
     this.state = {

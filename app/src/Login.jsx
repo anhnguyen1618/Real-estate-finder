@@ -7,12 +7,12 @@ const ControledInput = (props) => {
   const className = classnames("form-group", name, { "focused": active || value })
   return (
     <div className={className}>
-		   	<input 
-		   		className="form-control"
-		   		{...props.input}
-		   		type={name==="password"?"password":"text"}		   		
-		   		/>
-		</div>
+	   	<input 
+	   		className="form-control"
+	   		{...props.input}
+	   		type={name==="password"?"password":"text"}		   		
+	   		/>
+	</div>
   )
 }
 

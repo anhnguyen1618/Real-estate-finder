@@ -5,7 +5,7 @@ import { withRouter, Link } from 'react-router'
 import { getOnePost } from "../redux/entities/posts/selectors.js";
 import { MAP_TITLES } from "../utils/property-const";
 
-import Map from "./Map.jsx";
+import Map from "./components/Map.jsx";
 
 export class Details extends React.Component {
   constructor(props) {

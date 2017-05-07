@@ -2,15 +2,7 @@ import React from 'react';
 import { Field, reduxForm } from 'redux-form'
 import { Link } from 'react-router'
 
-import InputRange from 'react-input-range';
-
-const SilderForm = ({ input: { onChange, value }, minBound, maxBound }) => {
-  return (<InputRange 
-  			maxValue={maxBound} 
-  			minValue={minBound} 
-  			value={value} 
-  			onChange={onChange}/>)
-}
+import SliderInput from './SliderInput.jsx';
 
 const FilterForm = (props) => {
   const { handleSubmit, reset, submitting, queryParams } = props
@@ -41,11 +33,11 @@ const FilterForm = (props) => {
 
 				<div className="col-md-4">
 					<label htmlFor="">Price</label>
-					<Field component={SilderForm} name="price" maxBound={500} minBound={0}/>
+					<Field component={SliderInput} name="price" maxBound={500} minBound={0}/>
 				</div>
 				<div className="col-md-4">
 					<label htmlFor="">Area</label>
-					<Field component={SilderForm} name="area" maxBound={6000} minBound={0}/>
+					<Field component={SliderInput} name="area" maxBound={6000} minBound={0}/>
 				</div>
 				<div className="col-md-4">
 					<button type="submit" className="btn btn-primary" disabled={submitting}>Search</button>
