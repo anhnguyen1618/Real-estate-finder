@@ -13,6 +13,8 @@ postsSchema.define({
   imageUrls: [imageSchema]
 })
 
+axios.defaults.headers.common['withCredentials'] = true;
+
 export const fetchPosts = (queryParams = "") => {
   return {
     type: 'HANDLE_PROMISE',
@@ -51,7 +53,6 @@ export const login = (user) => {
   const instance = axios.create()
   instance.defaults.headers.common['Authorization'] = 'Basic ' + btoa(username + ':' + password)
   instance.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
-  instance.defaults.headers.common['withCredentials'] = true;
   return instance.post(`${EXAMPLE_ULR}/api/login`, user)
     .then(res => userActions.logIn(res.data))
 }
