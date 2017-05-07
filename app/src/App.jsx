@@ -2,9 +2,9 @@ import React from 'react';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router'
 
 import MainPage from './containers/MainPage.jsx'
-import Details from "./Details.jsx";
+import Details from "./containers/Details.jsx";
 
-import Main from "./Main.jsx"
+import Main from "./containers/Main.jsx"
 
 const App = () => {
   return (

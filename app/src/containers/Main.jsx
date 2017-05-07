@@ -3,15 +3,15 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router'
 import classnames from 'classnames'
 
-import userActions from '../redux/entities/users/actions.js'
+import userActions from '../../redux/entities/users/actions.js'
 
-import { fetchPosts, login, getCurrentUser } from "../redux/api.js";
-import { getAllPosts } from "../redux/entities/posts/selectors.js";
-import { getUser } from "../redux/entities/users/selector.js";
+import { fetchPosts, login, getCurrentUser } from "../../redux/api.js";
+import { getAllPosts } from "../../redux/entities/posts/selectors.js";
+import { getUser } from "../../redux/entities/users/selector.js";
 
-import MenuButton from "./components/MenuButton.jsx"
-import Login from "./Login.jsx"
-import LoginContainer from "./containers/Login-form-container.jsx";
+import MenuButton from "../components/MenuButton.jsx"
+import Login from "../components/Login.jsx"
+import LoginContainer from "../containers/LoginFormContainer.jsx";
 
 export class Main extends React.Component {
   constructor(props) {

@@ -1,5 +1,5 @@
 import React from 'react';
-import FilterForm from '../components/Filter-bar.jsx'
+import FilterForm from '../containers/FilterFormContainer.jsx'
 import Content from './Content.jsx'
 
 const MainPage = () => {
