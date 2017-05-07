@@ -2,19 +2,7 @@ import React from 'react';
 import { Field, reduxForm } from 'redux-form'
 import classnames from 'classnames'
 
-const ControledInput = (props) => {
-  const { meta: { active }, input: { name, value } } = props
-  const className = classnames("form-group", name, { "focused": active || value })
-  return (
-    <div className={className}>
-		   	<input 
-		   		className="form-control"
-		   		{...props.input}
-		   		type={name==="password"?"password":"text"}		   		
-		   		/>
-		</div>
-  )
-}
+import LoginInput from "./LoginInput.jsx";
 
 const Login = (props) => {
   const { opened, handleSubmit, activeTab, changeActiveTab, submitting, error } = props
@@ -37,8 +25,8 @@ const Login = (props) => {
 			    }
 		    	</center>
 		    	{error && <center className="error-message"><strong>{error}</strong></center>}
-		    	<Field name="username" component={ControledInput}/>
-		      	<Field name="password" component={ControledInput}/>
+		    	<Field name="username" component={LoginInput}/>
+		      	<Field name="password" component={LoginInput}/>
 		      	<button className="pull-right loginButton" type="submit" disabled={submitting}>{activeTab}</button>
 		    </form>		    
 		  </div>

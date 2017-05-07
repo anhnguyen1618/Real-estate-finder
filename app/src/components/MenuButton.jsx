@@ -1,7 +1,7 @@
 import React from 'react';
 import classnames from 'classnames'
 
-export class MenuButton extends React.Component {
+class MenuButton extends React.Component {
   constructor(props) {
     super(props);
     this.state = {

@@ -29,7 +29,7 @@ export class Map extends React.Component {
       },
       defaultAnimation: 2
     }
-    console.log("jh");
+
     return (
       <MapComponent 
       containerElement = {Container}
@@ -39,7 +39,5 @@ export class Map extends React.Component {
     );
   }
 }
-
-
 
 export default Map

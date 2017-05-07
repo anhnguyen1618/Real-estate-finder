@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router'
 
-import FilterForm from '../Filter-bar.jsx';
+import FilterForm from '../components/Filter-bar.jsx';
 
 import { fetchPosts } from "../../redux/api.js";
 import { buildQueryParams } from "../../utils/helpers.js";
