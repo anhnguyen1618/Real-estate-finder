@@ -46,6 +46,7 @@
     }
     .properties {
         text-align: center;
+        position: relative;
         h4 {
             margin-bottom: 30px;
         }
@@ -55,12 +56,29 @@
             margin: 20px 5px 10px;
             line-height: 30px;
             text-align: left;
+            position: relative;
             .property-title {
                 font-weight: 600;
             }
             .property-value {
                 float: right;
             }
+            .property-input {
+                position: absolute;
+                right: 15px;
+                top: 8px;
+            }
+            input {
+                padding-left: 10px;
+                border-radius: 0;
+            }
+        }
+        img {
+            position: absolute;
+            width: 30px;
+            right: 20px;
+            top: 2px;
+            cursor: pointer;
         }
     }
     .cover {

@@ -7,6 +7,21 @@ import { MAP_TITLES } from "../../utils/property-const";
 
 import Map from "../components/Map.jsx";
 import LoadingSpinner from '../components/Spiner.jsx'
+import Properties from '../components/Properties.jsx'
+
+const Property = ({ property: { title, value } }) => {
+  return (
+    <div className="property">
+      <span className="property-title">{title}: </span>
+      <span className="property-value">
+        
+      </span>
+      <span className="property-input">
+        <input className="form-control" type="text" value={value}/>
+      </span>
+    </div>
+  )
+}
 
 export class Details extends React.Component {
   constructor(props) {
@@ -22,6 +37,7 @@ export class Details extends React.Component {
     return Object.keys(MAP_TITLES)
       .map(key => {
         return {
+          key,
           title: MAP_TITLES[key],
           value: data[key] || 'N/A'
         }
@@ -68,19 +84,7 @@ export class Details extends React.Component {
               </div>
             </div>          
             <hr/>
-            <div className="properties row">
-              <h4>PROPERTY INFORMATION</h4>
-              {properties.map(({title, value}) => {
-                return (
-                  <div className="col-sm-4">
-                    <div className="property">
-                      <span className="property-title">{title}: </span>
-                      <span className="property-value">{value}</span>
-                    </div>
-                  </div>
-                )
-              })}
-            </div>
+            <Properties properties={properties} apartment={apartment} />
           </div>
        </div>
        

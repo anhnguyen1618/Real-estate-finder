@@ -19,7 +19,7 @@ export const fetchPosts = (queryParams = "") => {
   return {
     type: 'HANDLE_PROMISE',
     types: [fetchActions.fetchingHouses, postActions.fetchPosts],
-    api: axios.get(`${EXAMPLE_ULR}/api/search${queryParams}`)
+    api: axios.get(`${EXAMPLE_ULR}/api/public/search${queryParams}`)
       .then(res => {
         const { entities: { posts } } = normalize(res.data, [postsSchema])
         return posts
@@ -34,17 +34,21 @@ export const createPost = (data) => {
     })
 }
 
-export const updatePost = () => {
-  return axios.get(EXAMPLE_ULR)
+export const updatePost = (data) => {
+  delete data['imageUrls']
+  return axios.post(`${EXAMPLE_ULR}/api/private/apartment`, data)
     .then(res => {
-      return updatePost(res)
+      const { entities: { posts } } = normalize(res.data, postsSchema)
+      console.log(posts);
+      //updatePost(posts)
+      return postActions.updatePost(posts)
     })
 }
 
-export const deletePost = () => {
-  return axios.delete(EXAMPLE_ULR)
+export const deletePost = (id) => {
+  return axios.delete(`${EXAMPLE_ULR}/api/private/apartment/${id}`)
     .then(res => {
-      return deletePost(res)
+      return postActions.deletePost(String(id))
     })
 }
 
@@ -53,20 +57,20 @@ export const login = (user) => {
   const instance = axios.create()
   instance.defaults.headers.common['Authorization'] = 'Basic ' + btoa(username + ':' + password)
   instance.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
-  return instance.post(`${EXAMPLE_ULR}/api/login`, user)
+  return instance.post(`${EXAMPLE_ULR}/api/public/login`, user)
     .then(res => userActions.logIn(res.data))
 }
 
 export const signUp = (user) => {
   user.id = 1000000
-  return axios.post(`${EXAMPLE_ULR}/registerUser`, user)
+  return axios.post(`${EXAMPLE_ULR}/api/public/register`, user)
     .then(res => {
       return { res, type: "" }
     })
 }
 
 export const getCurrentUser = (user) => {
-  return axios.get(`${EXAMPLE_ULR}/api/currentUser`)
+  return axios.get(`${EXAMPLE_ULR}/api/public/currentUser`)
     .then((res) => {
       if (res.data) return userActions.logIn(res.data)
       return { type: "" }
