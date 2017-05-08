@@ -21,6 +21,7 @@ const updatePost = (state, { payload }) => {
 }
 
 const deletePost = (state, { payload }) => {
+  console.log(payload);
   return state.delete(payload)
 }
 

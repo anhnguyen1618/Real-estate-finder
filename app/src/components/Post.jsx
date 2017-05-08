@@ -17,13 +17,24 @@ const Post = (props) => {
       bathrooms,
       parkingType,
       lotSizeSqFt
-    }
+    },
+    onDelete
   } = props
   const address = truncate(`${street}, ${city}`, 30)
   return (
     <div className="col-sm-4">
-    	<Link to={`apartment/${id}`}>
-			<div className="post">
+    	
+		<div className="post">
+			{ onDelete &&
+				<div className="delete-image-container">
+					<img src="https://image.ibb.co/htCMRQ/rubbish_bin.png" 
+						className="delete-image" 
+						onClick={onDelete}
+						/>
+				</div>
+			}
+			
+			<Link to={`apartment/${id}`}>				
 				<div className="image">
 					<img src={imageUrls && imageUrls[0]} className="img-responsive"/>
 					<div className="price">
@@ -43,8 +54,8 @@ const Post = (props) => {
 						<h4><i className="fa fa-arrows-alt"></i> {lotSizeSqFt}</h4>
 					</div>
 				</div>
-			</div>
-		</Link>
+			</Link>
+		</div>
 	</div>
   )
 }
