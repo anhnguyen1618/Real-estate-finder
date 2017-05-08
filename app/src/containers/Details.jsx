@@ -74,7 +74,7 @@ export class Details extends React.Component {
               </div>
               <div className="col-sm-4">
                 <div className="basic-info">
-                  <h2>Apartment for sale</h2>
+                  <h2>Apartment for rent</h2>
                     <h3>{`${apartment.street}, ${apartment.city}`}</h3>   
                     <h1><span className="label label-danger">$ {apartment.price}</span></h1>  
                   </div>

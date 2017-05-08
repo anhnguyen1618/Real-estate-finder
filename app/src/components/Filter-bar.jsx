@@ -32,12 +32,12 @@ const FilterForm = (props) => {
 				</div>
 
 				<div className="col-md-4">
-					<label htmlFor="">Price</label>
-					<Field component={SliderInput} name="price" maxBound={500} minBound={0}/>
+					<label htmlFor="">Price (USD)</label>
+					<Field component={SliderInput} name="price" maxBound={12000} minBound={500}/>
 				</div>
 				<div className="col-md-4">
-					<label htmlFor="">Area</label>
-					<Field component={SliderInput} name="area" maxBound={6000} minBound={0}/>
+					<label htmlFor="">Area (Sq feet)</label>
+					<Field component={SliderInput} name="area" maxBound={12000} minBound={50}/>
 				</div>
 				<div className="col-md-4">
 					<button type="submit" className="btn btn-primary" disabled={submitting}>Search</button>
@@ -57,10 +57,10 @@ const FilterForm = (props) => {
 export default reduxForm({
   form: 'filter-form',
   initialValues: {
-    price: { min: 0, max: 400 },
-    area: { min: 0, max: 3000 },
-    bedrooms: 1,
-    bathrooms: 1,
+    price: { min: 2000, max: 8000 },
+    area: { min: 1500, max: 10000 },
+    bedrooms: 3,
+    bathrooms: 3,
     parking: "yes"
   }
 })(FilterForm);
