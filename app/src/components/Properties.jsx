@@ -20,7 +20,6 @@ export class Properties extends React.Component {
   }
 
   save = (values) => {
-    console.log('submit', values);
     this.props.updatePost(values)
       .then(res => {
         this.changeEditingState(false)
@@ -47,7 +46,7 @@ export class Properties extends React.Component {
         	/>
 	      }
 	      <Form onSubmit={handleSubmit(this.save)}>
-	        {properties.map((property) => {
+	        {properties.map((property, index) => {
 	          return (
 	            <div className="col-sm-4">
 	              <Property property={property} isEditing={isEditing}/>

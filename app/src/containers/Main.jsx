@@ -22,7 +22,7 @@ export class Main extends React.Component {
   }
 
   componentDidMount() {
-    //this.props.getCurrnentUser()
+    this.props.getCurrnentUser()
     this.props.fetchPosts(this.props.location.search)
   }
 
@@ -30,8 +30,8 @@ export class Main extends React.Component {
     if (this.props.location.search !== nextProps.location.search) {
       this.props.fetchPosts(nextProps.location.search)
     }
-    //this.props.getCurrnentUser()
   }
+
   toggleLoginModal = () => {
     this.setState({...this.state, loginModalShowed: !this.state.loginModalShowed });
   }
@@ -68,10 +68,9 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  console.log(userActions);
   return {
     fetchPosts: (queryParams) => dispatch(fetchPosts(queryParams)),
-    //getCurrnentUser: () => dispatch(getCurrentUser()),
+    getCurrnentUser: () => dispatch(getCurrentUser()),
     logOut: () => dispatch(userActions.logOut())
   }
 }

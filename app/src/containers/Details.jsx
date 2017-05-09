@@ -1,27 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter, Link } from 'react-router'
+import { reset } from 'redux-form'
 
 import { getOnePost } from "../../redux/entities/posts/selectors.js";
 import { MAP_TITLES } from "../../utils/property-const";
+import { getUser } from "../../redux/entities/users/selector.js";
+import { sendOrder } from "../../redux/api"
 
 import Map from "../components/Map.jsx";
 import LoadingSpinner from '../components/Spiner.jsx'
 import Properties from '../components/Properties.jsx'
-
-const Property = ({ property: { title, value } }) => {
-  return (
-    <div className="property">
-      <span className="property-title">{title}: </span>
-      <span className="property-value">
-        
-      </span>
-      <span className="property-input">
-        <input className="form-control" type="text" value={value}/>
-      </span>
-    </div>
-  )
-}
+import ContactForm from '../components/ContactForm.jsx'
 
 export class Details extends React.Component {
   constructor(props) {
@@ -44,9 +34,16 @@ export class Details extends React.Component {
       })
   }
 
+  sendMessage = (values) => {
+    return sendOrder({...values, userId: this.props.user.id })
+      .then(() => {
+        this.props.resetForm()
+        alert("Message Submited")
+      })
+  }
+
   render() {
-    const { apartment } = this.props
-    console.log(apartment)
+    const { apartment, user } = this.props
     if (!apartment) {
       return (<LoadingSpinner/>)
     }
@@ -67,8 +64,8 @@ export class Details extends React.Component {
                 <img src={mainImage} className="main-img"/>
 
                 <div className="sm-img">
-                  {apartment.imageUrls.map((img) => {
-                    return (<img src={img} onMouseOver={()=>this.changeMainImage(img)} />)
+                  {apartment.imageUrls.map((img, index) => {
+                    return (<img src={img} key={index} onMouseOver={()=>this.changeMainImage(img)} />)
                   })}
                 </div>
               </div>
@@ -85,6 +82,20 @@ export class Details extends React.Component {
             </div>          
             <hr/>
             <Properties properties={properties} apartment={apartment} />
+            <hr/>
+            <div>
+              <div className="row">
+                <center>
+                  <h4>Contact</h4>
+                </center>
+                <div className="col-sm-7 col-sm-offset-2">
+                  <ContactForm noUser={!user} onSubmit={this.sendMessage}/>
+                </div>
+                <div className="col-sm-2">
+                  <img src="https://image.ibb.co/eQfbbQ/man.png" className="img-responsive"/>
+                </div>
+              </div>
+            </div>
           </div>
        </div>
        
@@ -97,14 +108,14 @@ export class Details extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    apartment: getOnePost(state, ownProps.params.apartmentID)
+    apartment: getOnePost(state, ownProps.params.apartmentID),
+    user: getUser(state)
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-
-
+    resetForm: () => dispatch(reset('contact-form'))
   }
 }
 
