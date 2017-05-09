@@ -76,3 +76,10 @@ export const getCurrentUser = (user) => {
       return { type: "" }
     })
 }
+
+export const sendOrder = (order) => {
+  return axios.post(`${EXAMPLE_ULR}/api/private/orders`, order)
+    .then((res) => {
+      return { type: "" }
+    })
+}
